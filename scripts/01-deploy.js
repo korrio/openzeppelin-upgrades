@@ -1,6 +1,6 @@
 const hre = require("hardhat")
 const fs = require('fs')
-const ERC1967Proxy = require('@openzeppelin/contracts/build/contracts/ERC1967Proxy.json')
+const ERC1967Proxy = require('@openzeppelin/contracts/build/contracts/ERC1967Proxy')
 const Web3EthAbi = require('web3-eth-abi')
 
 async function main() {
@@ -8,7 +8,7 @@ async function main() {
 
 
   // deploy initial contract  
-  const MyToken = await hre.thor.getContractFactory("MyToken")
+  const MyToken = await hre.ethers.getContractFactory("MyToken")
   const myToken = await MyToken.deploy()
   console.log("MyToken 1.0 deployed to:", myToken.address)
 
@@ -20,7 +20,7 @@ async function main() {
   )
 
   // deploy proxy
-  const Proxy = await hre.thor.getContractFactory(ERC1967Proxy.abi, ERC1967Proxy.bytecode)
+  const Proxy = await hre.ethers.getContractFactory(ERC1967Proxy.abi, ERC1967Proxy.bytecode)
   const proxy = await Proxy.deploy(myToken.address, callInitialize)
   console.log("Proxy deployed to:", proxy.address)
 

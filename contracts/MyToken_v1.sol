@@ -11,7 +11,7 @@ contract MyToken is Initializable, ERC721Upgradeable, OwnableUpgradeable, UUPSUp
     constructor() initializer {}
 
     function initialize() initializer public {
-        __ERC721_init("MyToken", "MTK");
+        __ERC721_init("BrokenToken", "TK1");
         __Ownable_init();
         __UUPSUpgradeable_init();
     }
